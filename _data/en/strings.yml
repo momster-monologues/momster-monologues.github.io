@@ -5,11 +5,11 @@ home:
   projects_title: "Last Projects"
   see_more_projects: "See More Projects ->"
 footer:
-  title: "Let's keep in touch!"
-  description: " Find me on any of these platforms. "
+  title: "And we're live!"
+  description: " Follow me on any of these platforms. "
   pages: Pages
 blog:
   read_more: "Read More ->"
   more_articles: "More Posts"
 post:
-  share: Like it? Share it!
+  share: Loved this? Share it!

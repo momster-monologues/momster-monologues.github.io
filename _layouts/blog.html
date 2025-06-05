@@ -12,7 +12,7 @@ layout: default
     <a
       href="{{site.url}}{{site.baseurl}}/category/{{category_name| replace: ' ', '-'| downcase}}"
       aria-label="Category {{category_name}} page"
-      class="block font-mulish hover:text-sky-400 p-4 {% if category_name == page.title %}font-black{% endif %}"
+      class="block hover:text-sky-400 p-4 {% if category_name == page.title %}font-black{% endif %}"
     >
       {{ category_name | upcase }}
     </a>

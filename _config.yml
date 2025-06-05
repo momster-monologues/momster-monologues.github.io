@@ -1,6 +1,6 @@
 title: Momster Monologues
 logo: /assets/images/logo.jpg
-baseurl: /momster-monologues.github.io
+baseurl: /
 
 ##
 # Typewritter configuration.
@@ -12,6 +12,7 @@ typewriter_effect: true
 # Collections configuration
 ##
 collections:
+  podcast:
   projects:
     output: true
 
@@ -28,9 +29,9 @@ contact_channels:
   instagram: "https://www.instagram.com/momstermonologues"
   facebook: "https://www.facebook.com/momstermonologues"
   pinterest: "https://www.pinterest.com/momstermonologues"
-  substack: "https://momstermonologues.substack.com"
-  tiktok: "https://www.tiktok.com/@momstermonologues"
-  youtube: "https://www.youtube.com/@momstermonologues"
+  substack: "https://substack.com/@momstermonologues"
+  tiktok: "https://www.tiktok.com/@momster.monologues"
+  youtube: "https://www.youtube.com/@MomsterMonologues"
 
 ##
 # Plugins configuration
