@@ -2,8 +2,7 @@
 layout: home
 title: Home
 description: >-
-  Especializado en el desarrollo de API RESTs con Ruby on Rails. He participado
-  en diversas etapas del ciclo de desarrollo de aplicaciones.
+  Unfiltered, hilarious dispatches from the beautiful chaos of modern motherhood.
 image: /assets/images/placeholder.jpg
 main_content: >
   # Hey there!
