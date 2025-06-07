@@ -1,7 +1,7 @@
 ---
 layout: podcast
 title: Podcast
-image: /assets/images/podcast-banner.jpg
+image: /assets/images/podcast.jpg
 nav: true
 watch_url: https://youtube.com/momster-monologues
 ---

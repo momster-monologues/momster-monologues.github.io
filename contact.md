@@ -1,7 +1,7 @@
 ---
 layout: contact
 title: Contact
-image: /assets/images/podcast-banner.jpg
+image: /assets/images/contact.jpg
 nav: true
 ---
 
