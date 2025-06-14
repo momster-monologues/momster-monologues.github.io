@@ -1,86 +1,154 @@
 ---
 layout: default
+title: Podcast
 ---
-
-<link rel="stylesheet" href="{{ '/assets/css/monokai.css' | relative_url }}">
+{% include analytics.html %}
 
 <style>
-  .hero {
-    position: relative;
-    text-align: center;
-    color: white;
-    margin-top: 4rem;
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
   }
-
-  .hero img {
+  .video-grid iframe {
     width: 100%;
-    height: 75vh;
-    object-fit: cover;
+    height: 200px;
   }
-
-  .hero-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 2.5rem;
-    font-weight: bold;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+  @media (min-width: 768px) {
+    .video-grid iframe {
+      height: 250px;
+    }
   }
-
-  .watch-now {
-    display: inline-block;
-    background-color: #1a202c;
-    color: white;
-    padding: 12px 24px;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    border-radius: 8px;
-    font-weight: bold;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-  }
-
-  .watch-now:hover {
-    background-color: #2d3748;
+  @media (min-width: 1024px) {
+    .video-grid iframe {
+      height: 300px;
+    }
   }
 </style>
 
-<div class="container mx-auto">
-  <div class="hero">
-    <img src="{{ page.image | relative_url }}" alt="Podcast Hero">
-    <div class="hero-text">The Momster Monologues Podcast</div>
-  </div>
+<main class="content">
 
-  <!-- Top Watch Now button -->
-  <div class="text-center spacer mt-6">
-    <a href="{{ page.watch_url }}" class="watch-now">Coming Soon...</a>
-  </div>
+  <section class="white-section hero-banner text-center">
+    <img src="{{ site.baseurl }}/images/podcast-banner.svg" alt="Podcast Coming Soon" class="banner-image"/>
+    <h1>Momster Monologues Podcast</h1>
+    <p>Coming Soon: real talk on parenthood, resilience, and laughter.</p>
+  </section>
 
-  <!-- Main content -->
-  <div id="podcast" class="prose max-w-[75ch] prose-neutral mx-auto pt-10 pb-20">
-
-    <!-- About Section -->
-    <h2 class="text-3xl font-bold">About the Podcast</h2>
-    <div class="my-4">
-      {{ content }}
+  <!-- 2. About the podcast -->
+  <section class="black-section">
+    <div class="container">
+      <h2 class="section-heading text-center">What to Expect</h2>
+      <p style="max-width: 700px; margin: 0 auto; color: #ddd; text-align: center; line-height: 1.6;">
+        Each episode we’ll dive into the wild ride of parenting: candid stories, expert tips, and guest conversations that balance humor with insight. Whether you’re in the thick of sleepless nights or reflecting on the chaos behind you, this podcast is your audio companion on the journey.
+      </p>
     </div>
+  </section>
 
-    <h3 class="text-2xl font-semibold mt-10 mb-4">Recent Episodes</h3>
-    <div class="space-y-6">
-      {% for episode in site.episodes limit:5 %}
-      <div class="border-b pb-4">
-        <h4 class="text-xl font-bold">{{ episode.title }}</h4>
-        <p class="text-sm text-gray-600">{{ episode.date | date: "%B %d, %Y" }}</p>
-        <p>{{ episode.excerpt }}</p>
-        <a href="{{ episode.url | relative_url }}" class="text-blue-600 font-semibold">Listen Now →</a>
+  <!-- 3. Trailer or teaser embed (if available) -->
+  <section class="white-section">
+    <div class="container text-center">
+      <h2 class="section-heading">Trailer / Teaser</h2>
+      <!-- If you have a YouTube teaser video, replace VIDEO_ID below. If not yet, leave this section commented or with a placeholder image/message. -->
+      <!-- Example embed: -->
+      <!--
+      <div class="video-grid">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
-      {% endfor %}
+      -->
+      <p style="color: #555; max-width: 600px; margin: 0 auto;">
+        Trailer coming soon. Subscribe below to be notified when the first episode drops!
+      </p>
+      <a href="https://your-substack-name.substack.com" target="_blank" class="cta">Subscribe on Substack</a>
     </div>
+  </section>
 
-    <div class="text-center mt-10">
-      <a href="{{ page.watch_url }}" class="watch-now">Coming Soon...</a>
+  <!-- 4. Episodes (embed YouTube videos when available) -->
+  <section class="black-section">
+    <div class="container">
+      <h2 class="section-heading text-center">Episodes</h2>
+      <p style="color: #ddd; text-align: center; max-width: 700px; margin: 0 auto 1rem;">
+        As episodes release, watch/embed them here. For now, keep an eye here or subscribe to get notified.
+      </p>
+      <!-- Video grid: when you have episodes, duplicate the iframe block with real VIDEO_IDs -->
+      <div class="video-grid">
+        <!-- Example:
+        <iframe src="https://www.youtube.com/embed/EPISODE_VIDEO_ID1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/EPISODE_VIDEO_ID2" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        -->
+        <!-- Placeholder boxes to show layout -->
+        <div style="background:#333; color:#fff; display:flex; align-items:center; justify-content:center; height:200px;">
+          Episode 1 – Coming Soon
+        </div>
+        <div style="background:#333; color:#fff; display:flex; align-items:center; justify-content:center; height:200px;">
+          Episode 2 – Coming Soon
+        </div>
+      </div>
     </div>
+  </section>
 
-  </div>
-</div>
+  <!-- 5. How to listen -->
+  <section class="white-section">
+    <div class="container">
+      <h2 class="section-heading text-center">How to Listen</h2>
+      <p style="max-width: 700px; margin: 0 auto; color: #333; text-align: center; line-height: 1.6;">
+        Once published, episodes will be on YouTube, and also on audio platforms (Spotify, Apple Podcasts, etc.). Subscribe via your favorite podcast app or watch on YouTube. For now, follow the YouTube channel to get notified.
+      </p>
+      <div class="social-links">
+        <a href="https://www.youtube.com/your-channel" target="_blank">YouTube Channel</a>
+        <!-- Optionally add links to podcast platforms when ready -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Behind the scenes / call for guests -->
+  <section class="black-section">
+    <div class="container">
+      <h2 class="section-heading text-center">Get Involved</h2>
+      <p style="color: #ddd; max-width: 700px; margin: 0 auto; text-align: center; line-height: 1.6;">
+        Interested in sharing your story or expertise? Looking to be a guest? Send a message via our contact page with “Podcast Guest” in the subject, and let’s explore collabs.
+      </p>
+      <div style="text-align:center; margin-top:1rem;">
+        <a href="{{ site.baseurl }}/contact/#contact-form" class="cta">Pitch as Guest</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. FAQ about podcast -->
+  <section class="white-section">
+    <div class="container">
+      <h2 class="section-heading text-center">Podcast FAQ</h2>
+      <div class="faq-item">
+        <details>
+          <summary>When will the first episode drop?</summary>
+          <p>We’re aiming to launch in [Month Year]. Subscribe to our newsletter to be the first to know.</p>
+        </details>
+      </div>
+      <div class="faq-item">
+        <details>
+          <summary>Where will episodes be available?</summary>
+          <p>Episodes will be on YouTube and major podcast platforms. Subscribe early so your app auto-downloads new episodes.</p>
+        </details>
+      </div>
+      <div class="faq-item">
+        <details>
+          <summary>How long are episodes?</summary>
+          <p>Typically 30–45 minutes of candid conversation and tips. Occasional shorter bonus episodes may appear.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Closing CTA -->
+  <section class="black-section">
+    <div class="container text-center">
+      <h2 class="section-heading">Stay Tuned</h2>
+      <p style="color: #ddd; max-width: 700px; margin: 0 auto; line-height: 1.6;">
+        The podcast is coming soon—make sure you’re subscribed so you don’t miss an episode!
+      </p>
+      <a href="https://your-substack-name.substack.com" target="_blank" class="cta">Subscribe on Substack</a>
+      <a href="https://www.youtube.com/your-channel" target="_blank" class="cta">Follow YouTube</a>
+    </div>
+  </section>
+
+</main>

@@ -1,71 +1,215 @@
 ---
 layout: default
+title: Contact
+no_footer: true
 ---
-
-<link rel="stylesheet" href="{{ '/assets/css/monokai.css' | relative_url }}">
+{% include analytics.html %}
 
 <style>
-  .hero {
-    position: relative;
-    text-align: center;
-    color: white;
-    margin-top: 4rem;
-  }
-
-  .hero img {
-    width: 100%;
-    height: 75vh;
-    object-fit: cover;
-  }
-
-  .hero-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 2.5rem;
-    font-weight: bold;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-  }
-
-  .watch-now {
+  .cta {
     display: inline-block;
-    background-color: #1a202c;
-    color: white;
-    padding: 12px 24px;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    border-radius: 8px;
+    padding: 0.75rem 2rem;
+    border: 2px solid;
+    text-transform: uppercase;
     font-weight: bold;
+    border-radius: 0.25rem;
+    transition: background 0.3s, color 0.3s;
     text-decoration: none;
-    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+  }
+  .white-section .cta:hover { background: #333; color: #fff; }
+  .black-section .cta:hover { background: #fff; color: #000; }
+
+  .contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .contact-form label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+  }
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid currentColor;
+    border-radius: 0.25rem;
+    background: transparent;
+    color: inherit;
+  }
+  .contact-form textarea { resize: vertical; }
+  .contact-form button {
+    background: none;
+    border: 2px solid #000;
+    color: #000;
+    padding: 0.75rem 2rem;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background 0.3s, color 0.3s;
+  }
+  .white-section .contact-form button:hover { background: #333; color: #fff; }
+  .black-section .contact-form button:hover { background: #fff; color: #000; }
+
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
   }
 
-  .watch-now:hover {
-    background-color: #2d3748;
+  .testimonial {
+    font-style: italic;
+    margin: 1.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
   }
+  .testimonial::before {
+    content: "“";
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 2rem;
+  }
+  .testimonial-footer {
+    text-align: right;
+    margin-top: 0.5rem;
+    font-weight: 500;
+  }
+
+  .faq-item {
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+  .faq-item summary {
+    cursor: pointer;
+    font-weight: 500;
+    list-style: none;
+    padding: 0.5rem 0;
+  }
+  .faq-item summary::after {
+    content: "▾";
+    float: right;
+    transition: transform 0.3s;
+  }
+  .faq-item[open] summary::after { transform: rotate(180deg); }
 </style>
 
-<div class="container mx-auto">
-  <div class="hero">
-    <img src="{{ page.image | relative_url }}" alt="Contact Hero">
-    <div class="hero-text">Contact Me</div>
-  </div>
+<main class="content">
 
+  <!-- Banner -->
+  <section class="white-section hero-banner">
+    <img src="{{ site.baseurl }}/images/contact-banner.svg" alt="Contact illustration" class="banner-image"/>
+    <h1>Let’s Chat, Momster-Style!</h1>
+    <p>Got a wild parenting tale, a question, or a guest-post pitch? Drop me a line below.</p>
+  </section>
 
-  <!-- Main content -->
-  <div id="podcast" class="prose max-w-[75ch] prose-neutral mx-auto pt-10 pb-20">
-
-    <!-- About Section -->
-    <h2 class="text-3xl font-bold">My Socials</h2>
-    <div class="my-4">
-      {{ content }}
+  <!-- Quick options -->
+  <section class="black-section">
+    <div class="container text-center">
+      <h2 class="section-heading">What Brings You Here?</h2>
+      <div style="display: flex; justify-content:center; gap:1rem; flex-wrap: wrap; margin-top:1rem;">
+        <a href="#contact-form" class="cta">Share a Story</a>
+        <a href="#contact-form" class="cta">Ask a Tip</a>
+        <a href="#contact-form" class="cta">Guest Post</a>
+        <a href="#contact-form" class="cta">Other</a>
+      </div>
     </div>
+  </section>
 
-    <!-- Contact Button-->
-  <div class="text-center spacer mt-6">
-    <a href="momstermonologues@gmail.com" class="watch-now">Reach out now! </a>
-  </div>
+  <!-- Contact Form -->
+  <section id="contact-form" class="white-section">
+    <div class="container">
+      <h2 class="section-heading text-center">Get in Touch</h2>
+      <form action="https://formspree.io/f/xanjokap" method="POST" class="contact-form">
+        <label for="name">Your Name</label>
+        <input type="text" name="name" id="name" required>
 
-  </div>
-</div>
+        <label for="email">Email Address</label>
+        <input type="email" name="_replyto" id="email" required>
+
+        <label for="intent">I want to...</label>
+        <select name="intent" id="intent" required>
+          <option value="">Select one</option>
+          <option value="share-story">Share a story</option>
+          <option value="ask-advice">Ask parenting advice</option>
+          <option value="guest-post">Pitch a guest post</option>
+          <option value="other">Other</option>
+        </select>
+
+        <label for="message">Your Message</label>
+        <textarea name="message" id="message" rows="5" required></textarea>
+
+        <button type="submit">Send Message</button>
+      </form>
+      <p style="text-align:center; font-size:0.9rem; margin-top:0.5rem;">
+        I aim to reply within 48 hours. Your story stays private unless you say otherwise.
+      </p>
+    </div>
+  </section>
+
+  <!-- Testimonial -->
+  <section class="black-section">
+    <div class="container">
+      <h2 class="section-heading text-center">Testimonials</h2>
+      <p class="testimonial">Momster Monologues brings such a refreshing voice to the pink, pastel of the mom influencer space!</p>
+      <p class="testimonial-footer">— A fellow Momster</p>
+    </div>
+  </section>
+
+  <!-- Social Links -->
+  <section class="white-section">
+    <div class="container text-center">
+      <h2 class="section-heading">Stay Connected</h2>
+      <p>Follow for daily Momster Moments and real talk:</p>
+      <div class="social-links">
+        <a href="https://instagram.com/momstermonologues" target="_blank">Instagram</a>
+        <a href="https://www.tiktok.com/@momstermonologues" target="_blank">TikTok</a>
+        <a href="https://www.pinterest.com/momstermonologues" target="_blank">Pinterest</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQs -->
+  <section class="black-section">
+    <div class="container">
+      <h2 class="section-heading text-center">FAQs</h2>
+
+      <div class="faq-item">
+        <details>
+          <summary>Do you accept guest post submissions?</summary>
+          <p>Yes! Select “Guest Post” in the form above and tell me about your idea.</p>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary>Can I share anonymously?</summary>
+          <p>Absolutely—just mention it in your message. I’ll always ask before sharing anything publicly.</p>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary>What’s the response time?</summary>
+          <p>I aim to reply within 48 hours on weekdays. If not, check your spam or follow up.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Closing CTA -->
+  <section class="white-section">
+    <div class="container text-center">
+      <h2 class="section-heading">Ready to Share?</h2>
+      <p>Your chaos is welcome here. Send your story and let’s connect!</p>
+      <a href="#contact-form" class="cta">Send Your Momster Moment</a>
+    </div>
+  </section>
+
+</main>

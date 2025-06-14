@@ -1,39 +1,95 @@
 ---
 layout: default
+title: Blog
+permalink: /blog/
 ---
+{% include analytics.html %}
 
-<section class="container mx-auto pb-10 pt-20 lg:pt-[90px] lg:pb-20">
-  {% if site.categories.size > 0 %}
-  <div
-    class="flex flex-wrap justify-center border-gray-400 border-y mb-4 md:mb-12"
-  >
-    {% for category in site.categories %} {% assign category_name = category[0]
-    %}
-    <a
-      href="{{site.url}}{{site.baseurl}}/category/{{category_name| replace: ' ', '-'| downcase}}"
-      aria-label="Category {{category_name}} page"
-      class="block hover:text-sky-400 p-4 {% if category_name == page.title %}font-black{% endif %}"
-    >
-      {{ category_name | upcase }}
-    </a>
+<style>
+  .post-list-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+  .post-item {
+    padding: 2rem 0;
+  }
+  .post-item h2 {
+    margin: 0 0 0.5rem;
+  }
+  .post-item h2 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .post-item h2 a:hover {
+    text-decoration: underline;
+  }
+  .post-date {
+    font-size: 0.875rem;
+    opacity: 0.7;
+    margin-bottom: 1rem;
+  }
+  .post-excerpt {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: inherit;
+  }
+  .post-item .cta {
+    margin-top: 0.5rem;
+  }
+</style>
+
+<main class="content">
+
+  <!-- Hero Banner -->
+  <section class="white-section hero-banner text-center">
+    <img src="{{ site.baseurl }}/images/blog-banner.svg" alt="Blog Banner" class="banner-image" />
+    <h1>Momster Monologues Blog</h1>
+    <p>Insights, stories, and real talk on parenthood and life’s adventures.</p>
+  </section>
+
+  <!-- Posts List -->
+  {% assign posts = site.posts %}
+  {% if posts.size == 0 %}
+    <section class="black-section">
+      <div class="post-list-container text-center">
+        <h2 class="section-heading">No Posts Yet</h2>
+        <p>Check back soon for posts on parenting chaos, tips, and more!</p>
+      </div>
+    </section>
+  {% else %}
+    {% for post in posts %}
+      {% assign rem = forloop.index0 | modulo: 2 %}
+      {% if rem == 0 %}
+        {% assign section_class = "white-section" %}
+      {% else %}
+        {% assign section_class = "black-section" %}
+      {% endif %}
+      <section class="{{ section_class }}">
+        <div class="post-list-container post-item">
+          <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+          <div class="post-date">{{ post.date | date: "%B %-d, %Y" }}</div>
+          <div class="post-excerpt">
+            {{ post.excerpt | strip_html | truncate: 160 }}
+          </div>
+          <a href="{{ post.url | relative_url }}" class="cta">Read More</a>
+        </div>
+      </section>
     {% endfor %}
-  </div>
-  {% endif %} {% assign posts = page.posts | default: site.posts %} {% assign
-  first_post = posts[0] %} {% include post_main.html post=first_post %} {%
-  assign rest_posts = posts | slice: 1, posts.size %} {% if rest_posts.size > 0
-  %}
+  {% endif %}
 
-  <hr class="h-px my-12 bg-gray-400 border-0 dark:bg-gray-700" />
+  <!-- Pagination -->
+  {% if paginator %}
+    <section class="white-section">
+      <div class="post-list-container text-center">
+        {% if paginator.previous_page %}
+          <a href="{{ paginator.previous_page_path | relative_url }}" class="cta">← Newer Posts</a>
+        {% endif %}
+        {% if paginator.next_page %}
+          <a href="{{ paginator.next_page_path | relative_url }}" class="cta">Older Posts →</a>
+        {% endif %}
+      </div>
+    </section>
+  {% endif %}
 
-  <h1 class="text-2xl md:text-4xl font-bold text-gray-800">
-    {{ site.data[site.active_lang].strings.blog.more_articles | default:
-    site.data['en'].strings.blog.more_articles }}
-  </h1>
-  <div
-    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-12 gap-y-16 py-8 md:py-16"
-  >
-    {% for post in rest_posts %} {% include post_card.html post=post %} {%
-    endfor %}
-  </div>
-  {% endif%}
-</section>
+</main>

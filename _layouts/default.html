@@ -1,38 +1,82 @@
-<!doctype html>
-<html lang="{{site.active_lang}}">
-
+<!DOCTYPE html>
+<html lang="en-US">
+{% include analytics.html %}
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="{{ '/assets/css/dist-style.css' | relative_url }}" rel="stylesheet" />
-  <link href="{{ '/assets/css/fonts.css' | relative_url }}" rel="stylesheet" />
-  {% if site.typewriter_effect %}
-  <script src="https://unpkg.com/typeit@8.8.4/dist/index.umd.js"></script>
-  {% endif %} {% seo %} {% include custom_head.html %}
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y43P3J91ZW"></script>
+  <script>
+   window.dataLayer = window.dataLayer || [];
+   function gtag(){dataLayer.push(arguments);}
+   gtag('js', new Date());
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+   gtag('config', 'G-Y43P3J91ZW');
+  </script>
+  <meta charset="utf-8">
+  <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
+  <meta name="description"
+    content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="{{ "/favicon.ico" | prepend: site.baseurl }}">
+  <link rel="stylesheet" type="text/css"
+    href="//fonts.googleapis.com/css?family=PT+Serif:400,400italic,700,700italic%7COpen+Sans:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="{{ site.baseurl }}/css/main.scss" />
+  <link rel="stylesheet" href="{{ '/css/main.css' | relative_url }}">
+  <link rel="canonical" href="{{ page.url | replace:'/index.html','/' | prepend: site.baseurl | prepend: site.url }}">
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }} Feed"
+    href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}">
+
+  <style>
+   :root {
+     --nav-height: 0px;
+   }
+   body.fixed-nav .site {
+     padding-top: var(--nav-height);
+   }
+  </style>
 </head>
 
-<body class="bg-white text-gray-900 dark:bg-gray-700 dark:text-slate-100">
-  {% if site.typewriter_effect %}
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      new TypeIt("h1", {}).go();
-    });
-  </script>
-  {% endif %} {% include navbar.html %} {{ content }} {% include footer.html
-  %}
-  <script>
-    document.querySelectorAll("a").forEach(function (link) {
-      link.addEventListener("click", function (event) {
-        event.preventDefault(); // Prevent the default link action temporarily
-        link.classList.add("gentle-clicked");
+<body class="fixed-nav">
+  <div id="page" class="site">
+    {% include header.html %}
+    {{content}}
+    {% include widgets.html %}
+    {% unless page.no_footer %}
+      {% include footer.html %}
+    {% endunless %}
+  </div><!-- .site -->
 
-        setTimeout(function () {
-          link.classList.remove("gentle-clicked");
-          window.location.href = link.href; // Navigate to the link after the animation
-        }, 300); // Duration of the gentle bounce animation
-      });
-    });
+  <script type="text/javascript" src="{{ site.baseurl }}/js/plugins.js"></script>
+  <script type="text/javascript" src="{{ site.baseurl }}/js/custom.js"></script>
+
+  <script>
+    window.simpleJekyllSearch = new SimpleJekyllSearch({
+      searchInput: document.getElementById('search-field'),
+      resultsContainer: document.getElementById('search-results'),
+      json: '{{ site.baseurl }}/search.json',
+      searchResultTemplate: '<li><a href="{url}" title="{desc}">{title}</a> <span class="entry-meta"><time class="post-date" datetime="{date}">{date}</time></span></li>',
+      noResultsText: 'No results found',
+      limit: 15,
+      fuzzy: false,
+      exclude: ['Welcome']
+    })
   </script>
+  <script>
+   document.addEventListener('DOMContentLoaded', function() {
+     var nav = document.querySelector('.site-nav');
+     if (nav && document.body.classList.contains('fixed-nav')) {
+       var h = nav.getBoundingClientRect().height;
+       document.documentElement.style.setProperty('--nav-height', h + 'px');
+     }
+   });
+   window.addEventListener('resize', function() {
+     var nav = document.querySelector('.site-nav');
+     if (nav && document.body.classList.contains('fixed-nav')) {
+       var h = nav.getBoundingClientRect().height;
+       document.documentElement.style.setProperty('--nav-height', h + 'px');
+     }
+   });
+  </script>
+
 </body>
 
 </html>

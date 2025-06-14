@@ -1,0 +1,115 @@
+---
+layout: default
+---
+
+<main>
+  <section class="hero-banner white-section text-center">
+    <img
+      src="{{ site.baseurl }}/images/mm-banner.svg"
+      alt="Momster Monologues"
+      class="banner-image"
+    />
+    <div class="hero-text">
+      <h1>Momster Monologues</h1>
+      <p class="tagline">{{ site.tagline }}</p>
+    </div>
+  </section>
+
+  <!-- About Me Section -->
+  <section id="about" class="about black-section">
+    <div class="about-content container">
+      <h1 class="section-heading">About Me</h1>
+      <div class="about-grid">
+        <div class="about-image">
+          <img
+            src="{{ site.baseurl }}/images/mm.jpg"
+            alt="Photo of {{ site.author.name }}"
+            loading="lazy"
+          />
+        </div>
+        <div class="about-text">
+          <p class="intro-text">{{ site.author.bio }}</p>
+          <p>
+            Join me as I share unfiltered, hilarious dispatches from the beautiful chaos
+            of modern motherhood. Whether you’re a new parent or seasoned pro, there’s
+            something here to laugh about (and maybe commiserate over).
+          </p>
+          <a href="{{ site.baseurl }}/about/" class="btn btn-secondary">Read More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<section class="featured-posts light-section">
+  <div class="container">
+    <h2 class="section-heading text-center">Featured Articles</h2>
+    <div class="posts-grid">
+      {% assign featured = site.posts | where_exp: "post", "post.featured == true" | sort: 'date' | reverse | slice: 0,3 %}
+      {% for post in featured %}
+      <article class="post-card">
+        {% if post.image %}
+        <a href="{{ post.url }}" class="post-image-link">
+          <img
+            src="{{ post.image }}"
+            alt="{{ post.title }}"
+            class="post-image"
+            loading="lazy"
+          />
+        </a>
+        {% endif %}
+        <div class="post-content">
+          <h3 class="post-title"><a href="{{ post.url }}">{{ post.title }}</a></h3>
+          {% if post.excerpt %}
+          <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 120 }}</p>
+          {% endif %}
+          <time datetime="{{ post.date | date_to_xmlschema }}" class="post-date">{{ post.date | date: "%B %-d, %Y" }}</time>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="latest-posts white-section">
+  <div class="container">
+    <h2 class="section-heading text-center">Latest Articles</h2>
+    <ul class="latest-list">
+      {% for post in paginator.posts %}
+      <li class="latest-item">
+        <a href="{{ post.url }}" class="latest-link">{{ post.title }}</a>
+        <time datetime="{{ post.date | date_to_xmlschema }}" class="post-date">{{ post.date | date: "%b %-d, %Y" }}</time>
+      </li>
+      {% endfor %}
+    </ul>
+    {% if paginator.total_pages > 1 %}
+    <nav class="pagination" role="navigation">
+      {% if paginator.previous_page %}
+        <a class="pagination-link" href="{{ paginator.previous_page_path }}">Newer Posts</a>
+      {% endif %}
+      <span class="page-number">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+      {% if paginator.next_page %}
+        <a class="pagination-link" href="{{ paginator.next_page_path }}">Older Posts</a>
+      {% endif %}
+    </nav>
+    {% endif %}
+  </div>
+</section>
+
+<section class="social-feed black-section text-center">
+  <h2 class="section-heading">Follow Me On Instagram</h2>
+  <p>Laughs, behind-the-scenes, and quick tips—see it all on Instagram:</p>
+
+  <div class="instagram-wrapper">
+    <div class="instagram-embed">
+      <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/reel/DKxconDA2l6/" data-instgrm-version="14"></blockquote>
+    </div>
+    <div class="instagram-embed">
+      <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/reel/DKjCTjQIGQs/" data-instgrm-version="14"></blockquote>
+    </div>
+  </div>
+
+  <script async src="//www.instagram.com/embed.js"></script>
+</section>
+
+</main>

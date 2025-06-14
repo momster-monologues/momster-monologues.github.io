@@ -1,60 +1,53 @@
-title: Momster Monologues
-logo: /assets/images/logo.jpg
-baseurl: /
+title: "Momster Monologues"
+tagline: "Unfiltered, hilarious dispatches from the beautiful chaos of modern motherhood."
+logo: "mm.jpg"
 
-##
-# Typewritter configuration.
-# Feel free to disable if you don't like it.
-##
-typewriter_effect: true
+description: "Unfiltered, hilarious dispatches from the beautiful chaos of modern motherhood."
 
-##
-# Collections configuration
-##
-collections:
-  podcast:
-  projects:
-    output: true
+url: "https://momstermonologues.github.io"
+baseurl: ""  # or "/repo-name" if hosted under a subpath
 
-##
-# Contact Channels configuration
-# Uncomment for enable. Available contact channels are email, github, telegram, stackoverflow, discord, mastodon.
-# Please fell free to send a PR if you need a new one.
-# DISABLE GITHUB setting it as an empty string: ""
-# if false, then no contact channels will be display.
-##
-contact_channels_section: true
-contact_channels:
+sass:
+  sass_dir: _sass
+
+navigation:
+  - text: "Home"
+    url: "/"
+  - text: "About Me"
+    url: "/about/"
+  - text: "Contact"
+    url: "/contact/"
+  - text: "Services"
+    url: "/services/"
+  - text: "Podcast"
+    url: "/podcast/"
+  - text: "Blog"
+    url: "/blog/"
+
+author:
+  name: "Vasti Tait"
+  bio: "Vasti Tait is the founder and creative director of Momster Monologues."
+  url: "https://www.instagram.com/vastitait/"
+  location: "South Africa"
+  image: "me.jpg"
+
+social:
+  facebook: "momstermonologues"
+  instagram: "momstermonologues"
+  youtube: "MomsterMonologues"
   email: "momstermonologues@gmail.com"
-  instagram: "https://www.instagram.com/momstermonologues"
-  facebook: "https://www.facebook.com/momstermonologues"
-  pinterest: "https://www.pinterest.com/momstermonologues"
-  substack: "https://substack.com/@momstermonologues"
-  tiktok: "https://www.tiktok.com/@momster.monologues"
-  youtube: "https://www.youtube.com/@MomsterMonologues"
+  pinterest: "momstermonologues"
+  substack: "momstermonologues"
+  tiktok: "momster.monologues"
 
-##
-# Plugins configuration
-##
+paginate: 5
+paginate_path: "/blog/page:num/"
+
 plugins:
-  - jekyll-archives
-  - jekyll-seo-tag
-  - jekyll-polyglot
+  - jekyll-paginate
 
-##
-# Polyglot configuration
-##
-languages: ["en"]
-default_lang: "en"
-exclude_from_localization: ["javascript", "images", "css", "public"]
-parallel_localization: true
+permalink: pretty
 
-##
-# Archives configuration
-##
-jekyll-archives:
-  enabled:
-    - categories
-  layout: blog
-  permalinks:
-    category: "/category/:name/"
+markdown: kramdown
+kramdown:
+  auto_ids: false
