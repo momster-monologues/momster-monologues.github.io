@@ -13,6 +13,9 @@ permalink: /blog/
   }
   .post-item {
     padding: 2rem 0;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
   }
   .post-item h2 {
     margin: 0 0 0.5rem;
@@ -36,6 +39,34 @@ permalink: /blog/
   }
   .post-item .cta {
     margin-top: 0.5rem;
+  }
+
+  /* Thumbnail alongside post list items */
+  .post-thumbnail {
+    flex: 0 0 120px;
+  }
+  .post-thumbnail img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 0.5rem;
+    object-fit: cover;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  .post-content {
+    flex: 1;
+  }
+  /* For very small screens, stack thumbnail above content */
+  @media (max-width: 600px) {
+    .post-item {
+      flex-direction: column;
+      text-align: center;
+    }
+    .post-thumbnail {
+      flex: 0 0 auto;
+      width: 80%;
+      margin: 0 auto 1rem auto;
+    }
   }
 </style>
 
@@ -67,12 +98,25 @@ permalink: /blog/
       {% endif %}
       <section class="{{ section_class }}">
         <div class="post-list-container post-item">
-          <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
-          <div class="post-date">{{ post.date | date: "%B %-d, %Y" }}</div>
-          <div class="post-excerpt">
-            {{ post.excerpt | strip_html | truncate: 160 }}
+          {% if post.featured_image %}
+          <div class="post-thumbnail">
+            <a href="{{ post.url | relative_url }}">
+              <img
+                src="{{ "/images/" | append: post.featured_image | relative_url }}"
+                alt="{{ post.title }}"
+                loading="lazy"
+              />
+            </a>
           </div>
-          <a href="{{ post.url | relative_url }}" class="cta">Read More</a>
+          {% endif %}
+          <div class="post-content">
+            <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+            <div class="post-date">{{ post.date | date: "%B %-d, %Y" }}</div>
+            <div class="post-excerpt">
+              {{ post.excerpt | strip_html | truncate: 160 }}
+            </div>
+            <a href="{{ post.url | relative_url }}" class="cta">Read More</a>
+          </div>
         </div>
       </section>
     {% endfor %}
