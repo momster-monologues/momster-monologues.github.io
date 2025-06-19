@@ -1,14 +1,12 @@
 ---
 ---
 
-// ───────────────────────────────────────────────────────────
 // Variables and Imports
 // ───────────────────────────────────────────────────────────
 @import "variables";
 @import "reset";
 @import "general";
 
-// ───────────────────────────────────────────────────────────
 // Font Faces
 // ───────────────────────────────────────────────────────────
 @font-face {
@@ -19,7 +17,6 @@
   font-display: swap;
 }
 
-// ───────────────────────────────────────────────────────────
 // Global Styles
 // ───────────────────────────────────────────────────────────
 body {
@@ -27,6 +24,12 @@ body {
   font-size: 1rem;
   background: $cream;
   color: $black;
+  overflow-x: hidden;
+  @media (max-width: 768px) {
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
 }
 
 html {
@@ -39,6 +42,12 @@ html {
 main > section {
   padding: 4rem 1rem;
   transition: background 0.3s, color 0.3s;
+  @media (max-width: 768px) {
+    padding: 2rem 0.5rem;
+  }
+  @media (max-width: 480px) {
+    padding: 1.5rem 0.5rem;
+  }
 }
 
 .container {
@@ -47,6 +56,14 @@ main > section {
   margin-right: auto;
   padding-left: 1rem;
   padding-right: 1rem;
+  @media (max-width: 768px) {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  @media (max-width: 480px) {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
 }
 
 .section-heading {
@@ -86,6 +103,16 @@ main > section {
     color: $white;
     border-color: $white;
   }
+  h1, h2, h3, h4, h5, h6 {
+    color: $white !important;
+  }
+
+  .section-heading {
+    color: $white !important;
+    &::after {
+      background: $accent;
+    }
+  }
 }
 
 .grey-section {
@@ -97,7 +124,6 @@ main > section {
   }
 }
 
-// ───────────────────────────────────────────────────────────
 // Hero Banner
 // ───────────────────────────────────────────────────────────
 .hero-banner {
@@ -105,20 +131,36 @@ main > section {
   position: relative;
   overflow: hidden;
   text-align: center;
+  @media (max-width: 768px) {
+    padding: 1rem 0;
+  }
 }
 .banner-image {
   display: block;
   width: 100%;
   height: auto;
   object-fit: cover;
+  @media (max-width: 768px) {
+    max-height: 250px;
+  }
 }
 .hero-text {
   max-width: 60%;
   margin: 0 auto;
   padding: 0 1rem;
+  @media (max-width: 768px) {
+    max-width: 90%;
+    padding: 1rem;
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    tagline {
+      font-size: 0.9rem;
+    }
+  }
 }
 
-// ───────────────────────────────────────────────────────────
 // Headings
 // ───────────────────────────────────────────────────────────
 h1, h2, h3 {
@@ -136,7 +178,30 @@ h4, h5, h6 {
   text-transform: uppercase;
 }
 
-// ───────────────────────────────────────────────────────────
+h1 {
+  @media (max-width: 768px) {
+    font-size: 2rem;
+    line-height: 1.1;
+  }
+  @media (max-width: 480px) {
+    font-size: 1.75rem;
+  }
+}
+
+h2 {
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
+}
+
+.section-heading {
+  @media (max-width: 768px) {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+}
+
 // Navigation
 // ───────────────────────────────────────────────────────────
 .site-nav {
@@ -145,7 +210,14 @@ h4, h5, h6 {
   -webkit-backdrop-filter: blur(10px);
   transition: all 0.3s ease;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+   @media (max-width: 768px) {
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+  }
 }
+
+
 .fixed-nav .site-nav {
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   box-sizing: border-box;
@@ -159,6 +231,9 @@ h4, h5, h6 {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+  }
 }
 .nav-menu {
   font: 700 25px/1.6 $heading-font;
@@ -175,12 +250,37 @@ h4, h5, h6 {
     display: flex;
     gap: 0;
     align-items: center;
+    @media (max-width: 768px) {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      flex-direction: column;
+      background-color: $cream;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-in-out, opacity 0.3s ease;
+      opacity: 0;
+      z-index: 1000;
+
+      &.nav-open {
+        max-height: 400px;
+        opacity: 1;
+        padding: 1rem 0;
+      }
+    }
   }
   li {
     margin: 0;
     padding: 0;
     display: block;
     position: relative;
+    @media (max-width: 768px) {
+      width: 100%;
+      text-align: center;
+    }
   }
   a {
     color: $black;
@@ -200,6 +300,9 @@ h4, h5, h6 {
       background: $accent;
       transition: all 0.3s ease;
       transform: translateX(-50%);
+      @media (max-width: 768px) {
+        display: none;
+      }
     }
     &:hover {
       color: $white;
@@ -207,6 +310,9 @@ h4, h5, h6 {
       transform: translateY(-1px);
       &::after {
         width: 60%;
+      }
+      @media (max-width: 768px) {
+        transform: none;
       }
     }
     &.nav-current {
@@ -216,8 +322,36 @@ h4, h5, h6 {
         width: 60%;
       }
     }
+    @media (max-width: 768px) {
+      font-size: 1rem;
+      padding: 1rem;
+      margin: 0.25rem 1rem;
+      border-radius: 8px;
+      width: calc(100% - 2rem);
+    }
   }
 }
+
+
+// mobile nav menu
+@media (max-width: 768px) {
+  .nav-menu {
+    font-size: 22px;
+    ul {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-in-out;
+      &.nav-open {
+        max-height: 500px;
+      }
+    }
+    a {
+      font-size: 1rem;
+      padding: 0.75rem 1rem;
+    }
+  }
+}
+
 .nav-brand {
   font: bold 18px/1.4 $heading-font;
   color: $black;
@@ -228,7 +362,11 @@ h4, h5, h6 {
     color: #667eea;
     transform: scale(1.05);
   }
+  @media (max-width: 768px) {
+    margin-right: 0;
+  }
 }
+
 .search-toggle {
   color: $black;
   cursor: pointer;
@@ -240,8 +378,8 @@ h4, h5, h6 {
   margin-left: 1rem;
   transition: all 0.3s ease;
   &:hover {
-    color: #667eea;
-    background-color: rgba(102, 126, 234, 0.1);
+    color: $accent;
+    background-color: rgba(219, 176, 148, 0.1);
     transform: scale(1.1);
   }
 }
@@ -256,8 +394,50 @@ h4, h5, h6 {
   border-radius: 4px;
   transition: all 0.3s ease;
   &:hover {
-    background-color: rgba(102, 126, 234, 0.1);
-    color: #667eea;
+    background-color: rgba(219, 176, 148, 0.2);
+    color: $accent;
+  }
+
+  @media (max-width: 768px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  // Hamburger menu icon
+  span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background-color: currentColor;
+    position: relative;
+    transition: all 0.3s ease;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background-color: currentColor;
+      transition: all 0.3s ease;
+    }
+    &::before {
+      top: -6px;
+    }
+    &::after {
+      bottom: -6px;
+    }
+  }
+  &.menu-open span {
+    background-color: transparent;
+    &::before {
+      transform: rotate(45deg);
+      top: 0;
+    }
+    &::after {
+      transform: rotate(-45deg);
+      bottom: 0;
+    }
   }
 }
 @media (max-width: 768px) {
@@ -305,7 +485,6 @@ h4, h5, h6 {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.12);
 }
 
-// ───────────────────────────────────────────────────────────
 // Site Search
 // ───────────────────────────────────────────────────────────
 .site-search {
@@ -350,6 +529,9 @@ h4, h5, h6 {
   max-width: 720px;
   margin-left: auto;
   margin-right: auto;
+  @media (max-width: 768px) {
+    padding: 60px 1rem 40px 1rem; // Reduce top padding
+  }
 }
 #search-close {
   border-radius: 2px;
@@ -359,6 +541,12 @@ h4, h5, h6 {
   right: 30px;
   top: 30px;
   width: 38px;
+  @media (max-width: 768px) {
+    right: 15px;
+    top: 15px;
+    width: 44px; // Touch-friendly size
+    height: 44px;
+  }
 }
 .close-icon {
   background: 0;
@@ -389,7 +577,6 @@ h4, h5, h6 {
   }
 }
 
-// ───────────────────────────────────────────────────────────
 // Post Cover
 // ───────────────────────────────────────────────────────────
 .post-cover {
@@ -397,6 +584,12 @@ h4, h5, h6 {
   width: 100%;
   max-height: 500px;
   overflow: hidden;
+  @media (max-width: 768px) {
+    max-height: 300px; // Shorter on mobile
+  }
+  @media (max-width: 480px) {
+    max-height: 250px;
+  }
 }
 .post-cover__image {
   width: 100%;
@@ -426,6 +619,12 @@ h4, h5, h6 {
   color: #fff !important;
   font-size: 3rem;
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+  @media (max-width: 768px) {
+    font-size: 2rem !important;
+  }
+  @media (max-width: 480px) {
+    font-size: 1.75rem !important;
+  }
 }
 .post-cover__subtitle {
   margin-top: 0.5rem;
@@ -434,7 +633,6 @@ h4, h5, h6 {
   color: rgba(255, 255, 255, 0.9);
 }
 
-// ───────────────────────────────────────────────────────────
 // Service List (tags, etc.)
 // ───────────────────────────────────────────────────────────
 .service-list {
@@ -454,7 +652,6 @@ h4, h5, h6 {
   color: #000;
 }
 
-// ───────────────────────────────────────────────────────────
 // Services Section
 // ───────────────────────────────────────────────────────────
 .services-section {
@@ -472,6 +669,8 @@ h4, h5, h6 {
   @media (max-width: 768px) {
     flex-direction: column;
     text-align: center;
+    margin-bottom: 2rem;
+    gap: 1.5rem;
   }
   .service-image {
     flex: 0 0 40%;
@@ -488,6 +687,18 @@ h4, h5, h6 {
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
       object-fit: cover;
       display: block;
+      @media (max-width: 768px) {
+        margin-bottom: 2rem;
+        gap: 1.5rem;
+      }
+      .service-image img {
+        @media (max-width: 768px) {
+          max-width: 250px;
+        }
+        @media (max-width: 480px) {
+          max-width: 200px;
+        }
+      }
     }
   }
   .service-text {
@@ -516,7 +727,6 @@ h4, h5, h6 {
   }
 }
 
-// ───────────────────────────────────────────────────────────
 // Page Content Wrapper (if used)
 // ───────────────────────────────────────────────────────────
 .page-content-wrapper {
@@ -525,12 +735,15 @@ h4, h5, h6 {
   padding: 2rem;
   background-color: $cream;
   @media (max-width: 768px) {
-    max-width: 90%;
-    padding: 1rem;
+    max-width: 95%;
+    padding: 1.5rem 1rem;
+  }
+  @media (max-width: 480px) {
+    max-width: 100%;
+    padding: 1rem 0.75rem;
   }
 }
 
-// ───────────────────────────────────────────────────────────
 // About Section Styles
 // ───────────────────────────────────────────────────────────
 .about-grid {
@@ -540,6 +753,7 @@ h4, h5, h6 {
   flex-wrap: wrap;
   @media (max-width: 768px) {
     flex-direction: column;
+    gap: 1.5rem;
   }
 }
 .about-image {
@@ -555,12 +769,11 @@ h4, h5, h6 {
   @media (max-width: 768px) {
     flex: 0 0 auto;
     width: 80%;
-    margin: 0 auto 1rem auto;
+    margin: 0 auto 1.5rem auto;
   }
 }
 .about-text {
   flex: 1;
-  // default color comes from .white-section or .black-section
   p {
     margin-bottom: 1rem;
     line-height: 1.6;
@@ -586,9 +799,7 @@ h4, h5, h6 {
 .about-page.white-section .about-text {
   color: $black;
 }
-// For .about-page inside black-section, default .black-section color ($white) applies.
 
-// ───────────────────────────────────────────────────────────
 // Projects Section Styles
 // ───────────────────────────────────────────────────────────
 .projects-section {
@@ -645,7 +856,6 @@ h4, h5, h6 {
   }
 }
 
-// ───────────────────────────────────────────────────────────
 // Theme List
 // ───────────────────────────────────────────────────────────
 .theme-list {
@@ -654,18 +864,27 @@ h4, h5, h6 {
   margin: 2rem auto;
   max-width: 700px;
   text-align: left;
-  li {
-    margin-bottom: 1rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    strong {
-      color: $accent;
+  .theme-list {
+    @media (max-width: 768px) {
+      margin: 1.5rem auto;
+      padding: 0 0.5rem;
+    }
+    li {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      @media (max-width: 768px) {
+        font-size: 0.95rem;
+        margin-bottom: 0.75rem;
+      }
+      line-height: 1.5;
+      strong {
+        color: $accent;
+      }
     }
   }
 }
 
-// ───────────────────────────────────────────────────────────
-// Instagram Embed Wrapper (if used elsewhere)
+// Instagram Embed Wrapper
 // ───────────────────────────────────────────────────────────
 .instagram-wrapper {
   display: flex;
@@ -673,36 +892,54 @@ h4, h5, h6 {
   justify-content: center;
   gap: 100px;
   margin-top: 2rem;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+  }
 }
 .instagram-embed {
   max-width: 250px;
   flex: 1 1 250px;
+  @media (max-width: 768px) {
+    max-width: 300px;
+  }
+  @media (max-width: 480px) {
+    max-width: 280px;
+  }
 }
 .instagram-media {
   width: 100% !important;
 }
 
-// ───────────────────────────────────────────────────────────
-// Featured & Latest Posts (if used; adjust variables if needed)
+// Featured & Latest Posts (Fixed)
 // ───────────────────────────────────────────────────────────
 .featured-posts {
-  background: var(--color-bg);
-  color: var(--color-text);
-  padding: var(--spacing-section-vertical) 0;
+  background: $cream;
+  color: $black;
+  padding: 4rem 0;
+  @media (max-width: 768px) {
+    padding: 2rem 0;
+  }
   .container {
-    max-width: var(--max-content-width);
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 0 var(--spacing-page-side);
+    padding: 0 1rem;
   }
   .posts-grid {
     display: grid;
     gap: 2rem;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    padding-left: var(--spacing-page-side);
-    padding-right: var(--spacing-page-side);
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    @media (max-width: 480px) {
+      gap: 1rem;
+    }
   }
   .post-card {
-    background: var(--color-bg);
+    background: $cream;
     border: 1px solid rgba(0,0,0,0.1);
     border-radius: 0.5rem;
     overflow: hidden;
@@ -733,7 +970,7 @@ h4, h5, h6 {
         font-size: 1.25rem;
         margin-bottom: 0.5rem;
         a {
-          color: var(--color-text);
+          color: $black;
           text-decoration: none;
           transition: color 0.3s;
           &:hover {
@@ -745,7 +982,7 @@ h4, h5, h6 {
         flex: 1;
         margin-bottom: 0.75rem;
         line-height: 1.6;
-        color: var(--color-text);
+        color: $black;
       }
       .post-date {
         font-size: 0.85rem;
@@ -755,14 +992,15 @@ h4, h5, h6 {
     }
   }
 }
+
 .latest-posts {
-  background: var(--color-bg);
-  color: var(--color-text);
-  padding: var(--spacing-section-vertical) 0;
+  background: $cream;
+  color: $black;
+  padding: 4rem 0;
   .container {
-    max-width: var(--max-content-width);
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 0 var(--spacing-page-side);
+    padding: 0 1rem;
   }
   .latest-list {
     list-style: none;
@@ -780,7 +1018,7 @@ h4, h5, h6 {
       .latest-link {
         font-family: $base-font;
         font-size: 1rem;
-        color: var(--color-text);
+        color: $black;
         text-decoration: none;
         transition: color 0.3s;
         &:hover {
@@ -789,7 +1027,7 @@ h4, h5, h6 {
       }
       .post-date {
         font-size: 0.85rem;
-        color: var(--color-text);
+        color: $black;
       }
     }
   }
@@ -799,25 +1037,34 @@ h4, h5, h6 {
     justify-content: center;
     align-items: center;
     gap: 1rem;
+    @media (max-width: 480px) {
+      flex-direction: column;
+      gap: 0.75rem;
+      .pagination-link {
+        width: 100%;
+        text-align: center;
+      }
+    }
     .pagination-link {
       padding: 0.5rem 1rem;
-      border: 1px solid var(--color-text);
+      border: 1px solid $black;
       border-radius: 4px;
-      color: var(--color-text);
+      color: $black;
       text-decoration: none;
       font-family: $base-font;
       transition: background 0.3s, color 0.3s;
       &:hover {
-        background: var(--color-text);
-        color: var(--color-bg);
+        background: $black;
+        color: $cream;
       }
     }
     .page-number {
       font-size: 0.95rem;
-      color: var(--color-text);
+      color: $black;
     }
   }
 }
+
 @media (max-width: 600px) {
   .latest-posts .latest-item {
     flex-direction: column;
@@ -830,3 +1077,25 @@ h4, h5, h6 {
 }
 
 
+
+// touch friendly buttons
+// ───────────────────────────────────────────────────────────
+.btn, .btn-secondary, .cta {
+  @media (max-width: 768px) {
+    min-height: 44px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    display: inline-block;
+    text-align: center;
+  }
+}
+
+// Smooth scroll
+// ───────────────────────────────────────────────────────────
+html {
+  scroll-behavior: smooth;
+
+  @media (max-width: 768px) {
+    overflow-x: hidden;
+  }
+}

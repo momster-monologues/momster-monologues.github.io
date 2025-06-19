@@ -1,76 +1,132 @@
-<footer class="site-footer">
-  <style>
-    .site-footer {
-      background: var(--color-dark-bg, #3E2D28);
-      color: var(--color-dark-text, #ffffff);
-      padding: 2rem 1rem;
-      text-align: center;
-      font-family: var(--font-alt, 'Montserrat', sans-serif);
-    }
-    .site-footer h2 {
-      margin-bottom: 1.5rem;
-      font-weight: 700;
-      color: inherit;
-    }
-    .site-footer .footer-buttons {
-      max-width: 400px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-    }
-    .site-footer .footer-buttons a {
-      padding: 0.75rem 1.75rem;
-      border: 2px solid currentColor;
-      color: inherit;
-      text-decoration: none;
-      font-weight: 600;
-      border-radius: 4px;
-      transition: background-color 0.3s, color 0.3s;
-      display: inline-block;
-      min-width: 100px;
-      text-align: center;
-    }
-    .site-footer .footer-buttons a:hover,
-    .site-footer .footer-buttons a:focus {
-      background: currentColor;
-      color: var(--color-dark-bg, #3E2D28);
-    }
-    .site-footer .footer-copy {
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 0.85rem;
-      margin-top: 1.5rem;
-    }
-    @media (max-width: 480px) {
-      .site-footer .footer-buttons {
-        flex-direction: column;
-        gap: 1rem;
-      }
-    }
-  </style>
+<footer style="background: #3E2D28; padding: 2rem 1rem; text-align: center; font-family: 'Montserrat', sans-serif; color: #fdfcf3;">
 
-  <div class="container">
-    <h2>Contact Me</h2>
-    <div class="footer-buttons">
-      {% if site.email %}
-        <a href="mailto:{{ site.email }}">EMAIL</a>
-      {% endif %}
-      {% if site.social.instagram %}
-        <a href="https://instagram.com/{{ site.social.instagram }}" target="_blank" rel="noopener">INSTAGRAM</a>
-      {% endif %}
-      {% if site.social.facebook %}
-        <a href="https://facebook.com/{{ site.social.facebook }}" target="_blank" rel="noopener">FACEBOOK</a>
-      {% endif %}
-      {% if site.social.twitter %}
-        <a href="https://twitter.com/{{ site.social.twitter }}" target="_blank" rel="noopener">TWITTER</a>
-      {% endif %}
-      {% if site.social.youtube %}
-        <a href="https://youtube.com/{{ site.social.youtube }}" target="_blank" rel="noopener">YOUTUBE</a>
-      {% endif %}
-    </div>
-    <div class="footer-copy">
-      &copy; {{ "now" | date: "%Y" }} {{ site.title }}. All rights reserved.
-    </div>
+  <h2 style="margin-bottom: 1.5rem; font-weight: 700; color: #fdfcf3 !important;">My Socials</h2>
+
+  <div style="max-width: 400px; margin: 0 auto; display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
+
+    <!-- EMAIL Button -->
+    <a href="mailto:momstermonologues@gmail.com"
+       style="
+         padding: 0.75rem 1.75rem;
+         border: 2px solid #fdfcf3;
+         color: #fdfcf3;
+         text-decoration: none;
+         font-weight: 600;
+         border-radius: 4px;
+         transition: background-color 0.3s, color 0.3s;
+         display: inline-block;
+         min-width: 100px;
+         text-align: center;
+       "
+       onmouseover="this.style.backgroundColor='#fdfcf3'; this.style.color='#000';"
+       onmouseout="this.style.backgroundColor='transparent'; this.style.color='#fdfcf3';"
+    >
+      EMAIL
+    </a>
+
+    <!-- TIKTOK Button -->
+    <a href="https://www.tiktok.com/@momster.monologues"
+       style="
+         padding: 0.75rem 1.75rem;
+         border: 2px solid #fdfcf3;
+         color: #fdfcf3;
+         text-decoration: none;
+         font-weight: 600;
+         border-radius: 4px;
+         transition: background-color 0.3s, color 0.3s;
+         display: inline-block;
+         min-width: 100px;
+         text-align: center;
+       "
+       onmouseover="this.style.backgroundColor='#fdfcf3'; this.style.color='#000';"
+       onmouseout="this.style.backgroundColor='transparent'; this.style.color='#fdfcf3';"
+    >
+      TIKTOK
+    </a>
+
+    <!-- INSTAGRAM Button -->
+    <a href="https://www.instagram.com/momstermonologues" target="_blank" rel="noopener"
+       style="
+         padding: 0.75rem 1.75rem;
+         border: 2px solid #fdfcf3;
+         color: #fdfcf3;
+         text-decoration: none;
+         font-weight: 600;
+         border-radius: 4px;
+         transition: background-color 0.3s, color 0.3s;
+         display: inline-block;
+         min-width: 100px;
+         text-align: center;
+       "
+       onmouseover="this.style.backgroundColor='#fdfcf3'; this.style.color='#000';"
+       onmouseout="this.style.backgroundColor='transparent'; this.style.color='#fdfcf3';"
+    >
+      INSTAGRAM
+    </a>
+
+    <!-- YOUTUBE Button -->
+    <a href="https://www.youtube.com/@MomsterMonologues" target="_blank" rel="noopener"
+       style="
+         padding: 0.75rem 1.75rem;
+         border: 2px solid #fdfcf3;
+         color: #fdfcf3;
+         text-decoration: none;
+         font-weight: 600;
+         border-radius: 4px;
+         transition: background-color 0.3s, color 0.3s;
+         display: inline-block;
+         min-width: 100px;
+         text-align: center;
+       "
+       onmouseover="this.style.backgroundColor='#fdfcf3'; this.style.color='#000';"
+       onmouseout="this.style.backgroundColor='transparent'; this.style.color='#fdfcf3';"
+    >
+      YOUTUBE
+    </a>
+
+    <!-- FACEBOOK Button -->
+    <a href="https://www.facebook.com/profile.php?id=61576606361314" Target="_blank" rel="noopener"
+       style="
+         padding: 0.75rem 1.75rem;
+         border: 2px solid #fdfcf3;
+         color: #fdfcf3;
+         text-decoration: none;
+         font-weight: 600;
+         border-radius: 4px;
+         transition: background-color 0.3s, color 0.3s;
+         display: inline-block;
+         min-width: 100px;
+         text-align: center;
+       "
+       onmouseover="this.style.backgroundColor='#fdfcf3'; this.style.color='#000';"
+       onmouseout="this.style.backgroundColor='transparent'; this.style.color='#fdfcf3';"
+    >
+      FACEBOOK
+    </a>
+
+    <!-- PINTEREST Button -->
+    <a href="https://za.pinterest.com/momstermonologues/" target="_blank" rel="noopener"
+       style="
+         padding: 0.75rem 1.75rem;
+         border: 2px solid #fdfcf3;
+         color: #fdfcf3;
+         text-decoration: none;
+         font-weight: 600;
+         border-radius: 4px;
+         transition: background-color 0.3s, color 0.3s;
+         display: inline-block;
+         min-width: 100px;
+         text-align: center;
+       "
+       onmouseover="this.style.backgroundColor='#fdfcf3'; this.style.color='#000';"
+       onmouseout="this.style.backgroundColor='transparent'; this.style.color='#fdfcf3';"
+    >
+      PINTEREST
+    </a>
+
+  </div>
+
+  <div style="color: #aaa; font-size: 0.85rem; margin-top: 1.5rem;">
+    &copy; This page is managed by Tait Media Solutions 2025
   </div>
 </footer>

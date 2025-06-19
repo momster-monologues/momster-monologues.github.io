@@ -40,16 +40,19 @@
             e.preventDefault();
         });
 
-        // Enable menu toggle
+
         $menuToggle.click(function(){
             if ( $menuToggle.hasClass( 'toggled--on' ) ) {
                 $menuToggle.removeClass('toggled--on').attr('aria-expanded', 'false');
+                $navMenu.find('ul').removeClass('nav-open');
                 $navMenu.slideUp();
             } else {
                 $menuToggle.addClass('toggled--on').attr('aria-expanded', 'true');
                 $navMenu.slideDown();
+                $navMenu.find('ul').addClass('nav-open');
             }
         });
+
 
         // Adjust full-width images
         adjustImages();
